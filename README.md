@@ -19,13 +19,13 @@ In Unix:
 ```
 ./mvnw package
 ```
-In windows:
+In Windows:
 ```
 mvnw.cmd package
 ```
 This generates a jar in target that you can also run:
+
 ```
-mvnw.cmd package
 cd target
 java -jar calculator-0.0.1-SNAPSHOT.jar
 ```
