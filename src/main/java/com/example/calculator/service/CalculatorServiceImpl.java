@@ -7,6 +7,6 @@ import org.springframework.stereotype.Service;
 public class CalculatorServiceImpl implements CalculatorService{
     @Override
     public Integer binaryOperation(Integer firstOperator, OperationType operationType, Integer secondOperator) {
-        return operationType.getBiFunction().apply(firstOperator, secondOperator);
+        return operationType.getOperator().apply(firstOperator, secondOperator);
     }
 }

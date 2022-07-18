@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @AllArgsConstructor
 public class CalculatorController {
 
-    private final TracerAPI tracerAPI;
+    private final TracerAPI tracerApi;
 
     private final CalculatorService calculatorService;
 
@@ -23,9 +23,10 @@ public class CalculatorController {
     ResponseEntity<OperationResultDto> binaryOperation(@Validated @PathVariable Integer firstOperand,
                                                        @Validated @PathVariable OperationType operationType,
                                                        @Validated @PathVariable Integer secondOperand){
-        Integer result = calculatorService.binaryOperation(firstOperand, operationType, secondOperand);
-        tracerAPI.trace(String.format("Operation %d %s %d with result %d", firstOperand, operationType, secondOperand, result));
-        return ResponseEntity.ok(new OperationResultDto(result));
+        Integer value = calculatorService.binaryOperation(firstOperand, operationType, secondOperand);
+        OperationResultDto operationResult = new OperationResultDto(firstOperand, operationType, secondOperand, value);
+        tracerApi.trace(operationResult);
+        return ResponseEntity.ok(operationResult);
     }
 
 

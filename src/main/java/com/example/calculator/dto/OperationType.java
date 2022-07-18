@@ -1,18 +1,18 @@
 package com.example.calculator.dto;
 
-import java.util.function.BiFunction;
+import java.util.function.BinaryOperator;
 
 public enum OperationType {
     ADD ((a, b)-> a + b),
     SUBTRACT ((a, b) -> a-b);
 
-    private BiFunction<Integer, Integer, Integer> biFunction;
-    OperationType(BiFunction<Integer, Integer, Integer> biFunction){
-        this.biFunction = biFunction;
+    private BinaryOperator<Integer> operator;
+    OperationType(BinaryOperator<Integer> operator){
+        this.operator = operator;
     }
 
-    public BiFunction<Integer, Integer, Integer> getBiFunction(){
-        return this.biFunction;
+    public BinaryOperator<Integer> getOperator(){
+        return this.operator;
     }
 
 
