@@ -1,8 +1,7 @@
 package com.example.calculator.controller;
 
-import com.example.calculator.dto.OperationResultDto;
-import com.example.calculator.dto.OperationType;
 import com.example.calculator.service.CalculatorService;
+import com.example.calculator.util.OperationType;
 import io.corp.calculator.TracerAPI;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -20,14 +19,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(CalculatorController.class)
 class CalculatorControllerTest {
 
-    private static final Integer OPERATOR_FIRST = 99;
-    private static final Integer OPERATOR_LAST = 22;
+    private static final Long OPERATOR_FIRST = 99L;
+    private static final Long OPERATOR_LAST = 22L;
 
-    private static final Integer RESULT_ADD = 121;
+    private static final Long RESULT_ADD = 121L;
 
     private static final String URL_TEST_ADD = String.format("/binary-operation/%d/%s/%d", OPERATOR_FIRST, OperationType.ADD, OPERATOR_LAST);
 
-    private static final String URL_TEST_SUSTRACT = String.format("/binary-operation/%d/%s/%d", OPERATOR_FIRST, OperationType.SUBTRACT, OPERATOR_LAST);
+    private static final String URL_TEST_SUBTRACT = String.format("/binary-operation/%d/%s/%d", OPERATOR_FIRST, OperationType.SUBTRACT, OPERATOR_LAST);
 
     @MockBean
     private TracerAPI tracerAPI;
@@ -54,7 +53,7 @@ class CalculatorControllerTest {
     void when_call_binaryOperationSubtract_expect_callCalculatorService() throws Exception {
 
         this.mockMvc
-                .perform(MockMvcRequestBuilders.get(URL_TEST_SUSTRACT))
+                .perform(MockMvcRequestBuilders.get(URL_TEST_SUBTRACT))
                 .andExpect(MockMvcResultMatchers.status().isOk());
 
         verify(calculatorService).binaryOperation(OPERATOR_FIRST, OperationType.SUBTRACT, OPERATOR_LAST);
@@ -79,10 +78,7 @@ class CalculatorControllerTest {
                 .perform(MockMvcRequestBuilders.get(URL_TEST_ADD))
                 .andExpect(MockMvcResultMatchers.status().isOk());
 
-        OperationResultDto operationResult = new OperationResultDto(OPERATOR_FIRST, OperationType.ADD, OPERATOR_LAST, RESULT_ADD);
-        verify(tracerAPI).trace(
-                Mockito.argThat(s -> s.equals(operationResult))
-        );
+        verify(tracerAPI).trace(Mockito.anyString());
     }
 
     @Test

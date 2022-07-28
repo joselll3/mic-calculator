@@ -1,0 +1,60 @@
+openapi: "3.0.2"
+info:
+  title: "Basic calculator example"
+  version : "1.0.0"
+  contact:
+    name: Jose Luis Lopez
+    email: jl.lopez@profile.es
+tags:
+  - name: "ops"
+    description: "Everything about calculator ops"
+servers:
+  - url: http://localhost:8080
+
+paths:
+  /binary-operation/{firstOperand}/{operator}/{secondOperand}:
+    get:
+      tags:
+        - "ops"
+      summary: "Perform a binary operation"
+      description: "Returns a single pet"
+      operationId: "binaryOperation"
+      parameters:
+        - name: "firstOperand"
+          in: "path"
+          description: "First operand"
+          required: true
+          schema:
+            type: "integer"
+            format: "int64"
+        - name: "operator"
+          in: "path"
+          description: "Operator"
+          required: true
+          schema:
+            type: "string"
+            enum: ["add", "subtract"]
+        - name: "secondOperand"
+          in: "path"
+          description: "Second operand"
+          required: true
+          schema:
+            type: "integer"
+            format: "int64"
+      responses:
+        "200":
+          description: "successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/OperationResult"
+        "400":
+          description: "Bad request"
+components:
+  schemas:
+    OperationResult:
+      type: "object"
+      properties:
+        value:
+          type: "integer"
+          format: "int64"

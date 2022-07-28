@@ -1,8 +1,8 @@
 package com.example.calculator.service;
 
-import com.example.calculator.dto.OperationType;
+import com.example.calculator.util.OperationType;
 
 public interface CalculatorService {
 
-    Integer binaryOperation(Integer firstOperator, OperationType operationType, Integer secondOperator);
+    Long binaryOperation(Long firstOperator, OperationType operationType, Long secondOperator);
 }

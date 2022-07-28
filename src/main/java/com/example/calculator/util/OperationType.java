@@ -1,4 +1,4 @@
-package com.example.calculator.dto;
+package com.example.calculator.util;
 
 import java.util.function.BinaryOperator;
 
@@ -6,12 +6,12 @@ public enum OperationType {
     ADD ((a, b)-> a + b),
     SUBTRACT ((a, b) -> a-b);
 
-    private BinaryOperator<Integer> operator;
-    OperationType(BinaryOperator<Integer> operator){
+    private BinaryOperator<Long> operator;
+    OperationType(BinaryOperator<Long> operator){
         this.operator = operator;
     }
 
-    public BinaryOperator<Integer> getOperator(){
+    public BinaryOperator<Long> getOperator(){
         return this.operator;
     }
 
