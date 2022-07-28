@@ -17,4 +17,5 @@ public class CalculatorConfiguration {
     public CalculatorTracer calculatorTracer(TracerImpl tracerImpl){
         return new CalculatorTracer(tracerImpl);
     }
+
 }

@@ -40,3 +40,8 @@ To subtract two numbers (10-5):
 ```
  curl http://localhost:8080/binary-operation/10/SUBTRACT/5
 ```
+
+## Openapi swagger
+```
+ http://localhost:8080/swagger-ui/
+```
